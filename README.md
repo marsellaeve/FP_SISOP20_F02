@@ -7,11 +7,12 @@ FINAL PROJECT SISOP 2020 - XV6
 Tabel 1 : Truncate          SELESAI
 
 Tabel 2 : Expand            SELESAI
-          Factor            SELESAI
+         
+Factor            SELESAI
 
-Tabel 3 : rm (biasa, -r, *) SELESAI
+Tabel 3 : rm (biasa, -r,*) SELESAI
 
-          wget              GA MASUK AKAL TOLONG KALAU KASIH SOAL FP DICOBA KERJAKAN DULU BARU DIBERIKAN KE PRAKTIKAN
+wget              GA MASUK AKAL TOLONG KALAU KASIH SOAL FP DICOBA KERJAKAN DULU BARU DIBERIKAN KE PRAKTIKAN
 
 # Pembahasan Jawaban
 
@@ -152,11 +153,91 @@ Apabila truncate diminta mengurangi ukuran file, maka dilakukan seperti pada fun
 
 ### Source Code : [expand.c](https://github.com/marsellaeve/FP_SISOP20_F02/blob/master/XV6/expand.c)
 
+Pertama, file dibuka dulu dengan open, lalu dicek isinya dalam fungsi.
+
+```
+  char arr[]="\t\ntext";
+ while((fd=read(fe,buffer,1))>0){
+    if(buffer[0]==arr[0]){
+      printf(1," ");
+      cnt++;
+      while(cnt%8!=1){
+        printf(1," ");
+        cnt++;
+      }
+    }
+    else{
+      if(write(1,buffer,fd)!=fd){
+        printf(1,"Write error\n");
+        exit();
+      }
+      cnt++;
+    }
+    if(buffer[0]==arr[1]) cnt=1;
+  }
+```
+Apabila terdapat tab, maka akan diganti dengan spasi. Cnt adalah counter untuk tab, 1 tab berisi 8 spasi.
 
 ## No 3 Factor
 
 ### Source Code : [factor.c](https://github.com/marsellaeve/FP_SISOP20_F02/blob/master/XV6/factor.c)
 
+```
+for(int i=1;i<argc;i++){
+        if(argv[i][0]=='-'&&argv[i][1]=='-'){
+            if(strcmp(argv[i],"--help")==0){
+                printf(1,"factor [NUMBER]\nnumber must be a positive integer and >2\n");
+                printf(1,"factor by F02\n");
+            }
+            else if(strlen(argv[i])>1)
+            printf(1,"factor invalid option --help for more info\n");
+            exit();
+        }
+    }
+    int cnt=0;
+    for(int i=1;i<argc;i++){
+        bil= atoi(argv[i]);
+        if(bil==0&&strcmp(argv[i],"0")){
+            printf(1,"factor %s not a valid positive int\n",argv[i]);
+        }
+        else{
+            arr[cnt++]=bil;
+        }
+    }
+```
+Error handling, help dan pengubahan string menjadi bilangan.
+
+```
+ while(fact*fact<=bil){
+                if(bil%fact==0){
+                    if(fact==factor){
+                        printf(1," %d",fact);
+                    }
+                    else{
+                        printf(1," %d",fact);
+                        factor=fact;
+                    }
+                    bil=bil/fact;
+                    continue;
+                }
+                fact=fact+temp;
+                if(fact<7) temp=2;
+                else temp=6-temp;
+            }
+            if(bil==factor){
+                printf(1," %d",fact);
+            }
+            else{
+                factor=bil;
+                printf(1," %d",bil);
+            }
+            printf(1,"\n");
+        }
+        else{
+            printf(1,"factor < 2, prime number>=2\n");
+        }
+```
+Fungsi untuk mengecek apakah bilangan tersebut prima atau tidak.
 
 ## No 4 Rm (Biasa, -r, *)
 
