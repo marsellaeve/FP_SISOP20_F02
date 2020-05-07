@@ -89,7 +89,6 @@ void rmall(char *path){
       }
 	  if (st.type == T_FILE) rmbiasa(&buf[2]);
 	  else if(st.type == T_DIR){
-		  if(strcmp(buf, "./.") || strcmp(buf,"./.."))
 		  printf(1,"rm: cannot remove '%s': Is a directory\n",buf);
 	  }
     }
