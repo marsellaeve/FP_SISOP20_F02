@@ -6,7 +6,7 @@
 
 void rmbiasa(char *s) {
 	if (unlink(s) < 0) {
-		printf(2, "rm: %s failed to delete :( \n", s);
+		printf(2, "rm: %s failed to delete \n", s);
 		return;
 	}
 }
@@ -101,15 +101,15 @@ int main(int argc, char *argv[]){
 	int i;
 
 	if(argc < 2){
-		printf(2, "argumenmu kurang lur...\n");
+		printf(2, "Argumen kurang tepat, ketik rm --help untuk menampilkan daftar command.\n");
 		exit();
 	}
 
 	if(!strcmp(argv[1], "--help")){
         printf(1, " List Option : \n");
-        printf(1, " rm [File]			Menghapus File\n");
+        printf(1, " rm [File]		Menghapus File\n");
         printf(1, " rm -r [Direktori]	Menghapus Direktori yang terpilih beserta File di dalamnya\n");
-        printf(1, " rm  *				Menghapus semua File pada direktori yang sedang dikerjakan\n\n");
+        printf(1, " rm  *			Menghapus semua File pada direktori yang sedang dikerjakan\n\n");
             
         exit();
 	}
