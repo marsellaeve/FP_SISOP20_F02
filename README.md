@@ -4,13 +4,14 @@ Kelompok F02 (0099 &amp; 0142)
 
 FINAL PROJECT SISOP 2020 - XV6
 
-Tabel 1 : Truncate          ####selesai
+Tabel 1 : Truncate          SELESAI
 
-Tabel 2 : Expand            ####selesai
-          Factor            ####selesai
+Tabel 2 : Expand            SELESAI
+          Factor            SELESAI
 
-Tabel 3 : rm (biasa, -r, *) ####selesai
-          wget              ####GA MASUK AKAL TOLONG KALAU KASIH SOAL FP DICOBA KERJAKAN DULU BARU DIBERIKAN KE PRAKTIKAN
+Tabel 3 : rm (biasa, -r, *) SELESAI
+
+          wget              GA MASUK AKAL TOLONG KALAU KASIH SOAL FP DICOBA KERJAKAN DULU BARU DIBERIKAN KE PRAKTIKAN
 
 # Pembahasan Jawaban
 
