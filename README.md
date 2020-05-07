@@ -12,7 +12,7 @@ Factor            SELESAI
 
 Tabel 3 : rm (biasa, -r,*) SELESAI
 
-wget              GA MASUK AKAL TOLONG KALAU KASIH SOAL FP DICOBA KERJAKAN DULU BARU DIBERIKAN KE PRAKTIKAN
+wget             NULL
 
 # Pembahasan Jawaban
 
