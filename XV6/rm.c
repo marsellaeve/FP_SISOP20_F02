@@ -101,11 +101,11 @@ int main(int argc, char *argv[]){
 	int i;
 
 	if(argc < 2){
-		printf(2, "Argumen kurang tepat, ketik rm --help untuk menampilkan daftar command.\n");
+		printf(2, "Argumen kurang tepat, ketik rm help untuk menampilkan daftar command.\n");
 		exit();
 	}
 
-	if(!strcmp(argv[1], "--help")){
+	if(!strcmp(argv[1], "help")){
         printf(1, " List Option : \n");
         printf(1, " rm [File]		Menghapus File\n");
         printf(1, " rm -r [Direktori]	Menghapus Direktori yang terpilih beserta File di dalamnya\n");
@@ -123,12 +123,10 @@ int main(int argc, char *argv[]){
   else if(!strcmp(argv[1], "*")){
     	rmall(".");
   	}
-
   else {
 		for(i = 1; i < argc; i++){
 			rmbiasa(argv[i]);
 		}
 	}
-
 	exit();
 }
