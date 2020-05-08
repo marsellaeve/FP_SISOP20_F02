@@ -4,13 +4,19 @@ Kelompok F02 (0099 &amp; 0142)
 
 FINAL PROJECT SISOP 2020 - XV6
 
-Tabel 1 : Truncate          SELESAI
+Tabel 1 :
 
-Tabel 2 : Expand            SELESAI
+Truncate          SELESAI
+
+Tabel 2 : 
+
+Expand            SELESAI
          
 Factor            SELESAI
 
-Tabel 3 : rm (biasa, -r,*) SELESAI
+Tabel 3 : 
+
+rm (biasa, -r,*) SELESAI
 
 wget             NULL
 
