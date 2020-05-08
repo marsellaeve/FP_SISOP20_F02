@@ -248,3 +248,105 @@ Fungsi untuk mengecek apakah bilangan tersebut prima atau tidak.
 ## No 4 Rm (Biasa, -r, *)
 
 ### Source Code : [rm.c](https://github.com/marsellaeve/FP_SISOP20_F02/blob/master/XV6/rm.c)
+
+Pada soal ini terdapat 3 command, yaitu biasa,-r,dan *. command biasa akan menghapus file yang diinputkan pada argumen, command -r akan melakukan rekursi saat melakukan rm, sehingga direktori dalam direktori dapat ikut terhapus, sedangkan command * akan menghapus semua file yang ada pada direktori saat ini.
+
+- berikut fungsi untuk melakukan rm biasa :
+```
+void rmbiasa(char *s) {
+	if (unlink(s) < 0) {
+		printf(2, "rm: %s failed to delete \n", s);
+		return;
+	}
+}
+```
+- berikut fungsi untuk melakukan rm -r :
+```
+void rmrekursif(char *dir) {
+	int fd;
+	char buf[512], *p;
+	struct dirent de;
+	struct stat st;
+
+	fd = open(dir, O_RDONLY);
+
+	fstat(fd, &st);
+
+	switch (st.type) {
+		case T_FILE:
+			rmbiasa(dir);
+			break;
+		case T_DIR:
+			strcpy(buf, dir);
+			p = buf+strlen(buf);
+			*p = '/';
+			p++;
+
+			while(read(fd, &de, sizeof(de)) == sizeof(de)) {
+				if(de.inum == 0 || !strcmp(de.name, ".") || !strcmp(de.name, ".."))
+					continue;
+				memmove(p, de.name, strlen(de.name));
+				p[strlen(de.name)] = 0;
+				fstat(open(buf, O_RDONLY), &st);
+				if (st.type == T_FILE) 
+					rmbiasa(buf);
+				else if (st.type == T_DIR)
+					rmrekursif(buf);
+			}
+			break;
+	}
+	unlink(dir);
+	close(fd);
+}
+```
+- berikut fungsi untuk melakukan rm * :
+```
+void rmall(char *path){
+  char buf[512], *p;
+  int fd;
+  struct dirent de;
+  struct stat st;
+
+  if((fd = open(path, 0)) < 0){
+    printf(2, "failed to remove %s\n", path);
+    return;
+  }
+
+  if(fstat(fd, &st) < 0){
+    printf(2, "ls: cannot stat %s\n", path);
+    close(fd);
+    return;
+  }
+  switch(st.type){
+ 
+  case T_FILE:
+	rmbiasa(&buf[2]);
+    break;
+
+  case T_DIR:
+    if(strlen(path) + 1 + DIRSIZ + 1 > sizeof buf){
+      printf(1, "ls: path too long\n");
+      break;
+    }
+    strcpy(buf, path);
+    p = buf+strlen(buf);
+    *p++ = '/';
+    while(read(fd, &de, sizeof(de)) == sizeof(de)){
+      if(de.inum == 0)
+        continue;
+      memmove(p, de.name, DIRSIZ);
+      p[DIRSIZ] = 0;
+      if(stat(buf, &st) < 0){
+        printf(1, "ls: cannot stat %s\n", buf);
+        continue;
+      }
+	  if (st.type == T_FILE) rmbiasa(&buf[2]);
+	  else if(st.type == T_DIR){
+		  printf(1,"rm: cannot remove '%s': Is a directory\n",buf);
+	  }
+    }
+    break;
+  }
+  close(fd);
+}
+```
