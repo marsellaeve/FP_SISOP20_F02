@@ -350,3 +350,11 @@ void rmall(char *path){
   close(fd);
 }
 ```
+
+## Authors
+
+Created by:
+
+[Rifki Aulia Irawan 142](https://github.com/rifkiirawan)
+
+[Evelyn Tjitrodjojo 99](https://github.com/marsellaeve)
